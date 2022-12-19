@@ -2,3 +2,6 @@
 # pip install pysqlite3
 
 import sqlite3 as basedatos
+
+basedatos.connect("mibasededatos.sqlite3")
+

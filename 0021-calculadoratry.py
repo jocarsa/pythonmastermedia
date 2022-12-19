@@ -1,4 +1,4 @@
-def calculadora:
+def calculadora():
     # primero le pido al usuario la entrada
 
     print("Dime el operando 1:")

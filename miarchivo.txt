@@ -1,2 +1,1 @@
-Hola desde Python
-Y esta es una segunda linea
+Este texto te lo escribo desde Python

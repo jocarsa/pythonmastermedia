@@ -29,6 +29,7 @@ for tupla in datos:
     )
 
 tabla.pack()
+# atrapa y para la ejecución cuando el archivo se abre desde fuera del shell
 ventana.mainloop()
 
 

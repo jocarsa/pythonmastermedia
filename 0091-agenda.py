@@ -53,6 +53,7 @@ botonenvia.pack()
 
 etiquetatemporal = Label(marco,text = "Aquí te voy a decir cosas")
 etiquetatemporal.pack(side=TOP)
+marco.mainloop()
 
 
 

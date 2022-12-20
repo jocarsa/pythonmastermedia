@@ -7,3 +7,4 @@ import pandas as pan
 registros = pan.read_excel('Libro1.xlsx')
 print(type(registros))
 print(registros)
+print(registros.values)

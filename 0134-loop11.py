@@ -3,8 +3,7 @@ import tkinter as tk
 import random
 import math
 
-impersonaje = PhotoImage(file='josevicentesprite.png')
-imjugador = PhotoImage(file='anasprite.png')
+
 
 class Personaje():
     def __init__(self,x,y,z):
@@ -13,16 +12,17 @@ class Personaje():
         self.z = z
         
 class Jugador():
-    def __init__(self,x,y,z):
+    def __init__(self,x,y,z,vida):
         self.x = random.randint(0, 300)
         self.y = random.randint(0, 300)
         self.z = z
+        self.vida = vida
 
 personajes = []
 for i in range(0,10):
     personajes.append(Personaje(10,10,0))
 
-jugador = Jugador(10,10,0)
+jugador = Jugador(10,10,0,100)
 
 print(personajes)
 
@@ -45,18 +45,26 @@ class Aplicacion(object):
             # en cada iteracion quiero que el personaje se mueva un poco
             personaje.x = personaje.x + random.randint(-2,2)
             personaje.y = personaje.y + random.randint(-2,2)
-            lienzo.create_oval(personaje.x,personaje.y,personaje.x+10,personaje.y+10)
+            #lienzo.create_oval(personaje.x,personaje.y,personaje.x+10,personaje.y+10)
+            lienzo.create_image(personaje.x, personaje.y, image=impersonaje)
             # calculo la distancia
             p = [personaje.x, personaje.y]
             q = [jugador.x, jugador.y]
             distancia = math.dist(p, q)
             if distancia < 20:
-                print("muerto")
-        lienzo.create_oval(jugador.x,jugador.y,jugador.x+10,jugador.y+10,fill="black")
+                jugador.vida= jugador.vida - 1
+                print(jugador.vida)
+        #lienzo.create_oval(jugador.x,jugador.y,jugador.x+10,jugador.y+10,fill="black")
+        if jugador.vida < 0:
+            lienzo.create_image(jugador.x, jugador.y, image=immuerto)
+        else:
+            lienzo.create_image(jugador.x, jugador.y, image=imjugador)
         self.master.after(33,self.bucle)
 # saco una ventana
 raiz = tk.Tk()
-
+impersonaje = tk.PhotoImage(file='josevicentesprite.png')
+imjugador = tk.PhotoImage(file='anasprite.png')
+immuerto = tk.PhotoImage(file='calavera.png')
 
 def delante(e):
     #print("Movemos hacia delante")
@@ -82,3 +90,5 @@ lienzo = tk.Canvas()
 lienzo.pack()
 # en la ventana gráfica ejecuto la Aplicacion
 aplicacion = Aplicacion(raiz)
+
+raiz.mainloop()
